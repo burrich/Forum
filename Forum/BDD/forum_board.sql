@@ -32,7 +32,7 @@ CREATE TABLE `board` (
   KEY `category_idx` (`category`),
   CONSTRAINT `FK_BOARD_category` FOREIGN KEY (`category`) REFERENCES `category` (`id`),
   CONSTRAINT `category` FOREIGN KEY (`category`) REFERENCES `category` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,6 +41,7 @@ CREATE TABLE `board` (
 
 LOCK TABLES `board` WRITE;
 /*!40000 ALTER TABLE `board` DISABLE KEYS */;
+INSERT INTO `board` VALUES (1,'board 1',1),(2,'board 2',1),(3,'board 3',1),(4,'board 4',1),(5,'board 5',1),(6,'board 1',2),(7,'board 2',2),(8,'board 1',3),(9,'board 2',3),(10,'board 1 ',4),(11,'board 2',4),(12,'board 1',5),(13,'board 2',5),(14,'board 3',5);
 /*!40000 ALTER TABLE `board` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-03-27 18:09:57
+-- Dump completed on 2014-03-28 15:02:31

@@ -13,6 +13,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import org.hibernate.Hibernate;
 
 /**
  *
@@ -28,6 +29,14 @@ public class CategoryService {
         final CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         final CriteriaQuery<Category> query = criteriaBuilder.createQuery(Category.class);
         query.from(Category.class);
-        return em.createQuery(query).getResultList();
+        
+        List<Category> categories = em.createQuery(query).getResultList();
+        
+        // Récupération des boards associés aux catégories
+        for (Category category : categories) {
+            Hibernate.initialize(category.getBoards());
+        }
+        
+        return categories;
     }
 }
