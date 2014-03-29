@@ -33,10 +33,11 @@ CREATE TABLE `topic` (
   PRIMARY KEY (`id`),
   KEY `board_idx` (`board`),
   KEY `topicUser_idx` (`user`),
-  CONSTRAINT `FK_TOPIC_board` FOREIGN KEY (`board`) REFERENCES `board` (`id`),
+  CONSTRAINT `FK_TOPIC_user` FOREIGN KEY (`user`) REFERENCES `user` (`id`),
   CONSTRAINT `board` FOREIGN KEY (`board`) REFERENCES `board` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_TOPIC_board` FOREIGN KEY (`board`) REFERENCES `board` (`id`),
   CONSTRAINT `topicUser` FOREIGN KEY (`user`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,6 +46,7 @@ CREATE TABLE `topic` (
 
 LOCK TABLES `topic` WRITE;
 /*!40000 ALTER TABLE `topic` DISABLE KEYS */;
+INSERT INTO `topic` VALUES (1,'topic 1',0,1,1),(2,'topic 2',0,1,1),(3,'topic 3',0,1,1),(4,'topic 1',0,2,1),(5,'topic 2',0,2,1),(6,'topic 3',0,2,1),(7,'topic 4',0,2,1);
 /*!40000 ALTER TABLE `topic` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-03-28 15:02:30
+-- Dump completed on 2014-03-29 16:07:29

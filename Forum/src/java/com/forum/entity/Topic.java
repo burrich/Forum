@@ -34,6 +34,10 @@ public class Topic implements Serializable {
     @JoinColumn(name = "board")
     private Board board;
     
+    @ManyToOne
+    @JoinColumn(name = "user")
+    private User user;
+    
     @OneToMany(mappedBy = "topic")
     private List<Message> messages;
 
@@ -41,10 +45,11 @@ public class Topic implements Serializable {
         
     }
     
-    public Topic(String name, boolean locked, Board board, List<Message> messages) {
+    public Topic(String name, boolean locked, Board board, User user, List<Message> messages) {
         this.name = name;
         this.locked = locked;
         this.board = board;
+        this.user = user;
         this.messages = messages;
     }
     
@@ -78,6 +83,14 @@ public class Topic implements Serializable {
 
     public void setBoard(Board board) {
         this.board = board;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public List<Message> getMessages() {

@@ -24,7 +24,7 @@
                 <h:column>
                     <h:dataTable value="#{category.boards}" var="board">
                         <h:column>
-                            <h:outputText value="#{board.name} |"/>
+                            <h:commandLink action="#{boardController.listTopics(board.id)}" value="#{board.name}" /> |
                         </h:column>
                         
                         <h:column>

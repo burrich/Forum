@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Board</title>
+    </h:head>
+    <h:body>
+        <f:metadata>
+            <f:viewParam name="idBoard" value="#{boardController.idBoard}" />
+        </f:metadata>
+        
+        <h1>Forum</h1>
+        
+        <h:form>
+            <h:commandLink action="login?faces-redirect=true" value="login"/>
+        </h:form>
+        
+        <br/>
+
+        <h2>#{boardController.board.name}</h2>
+        
+        <h:form>
+            <h:dataTable value="#{boardController.topicsTableModel}" var="topic">
+                <h:column>
+                    <h:commandLink action="#{topicController.listMessages(topic.id)}" value="#{topic.name}" /> |
+                </h:column>
+                
+                 <h:column>
+                    <h:outputText value="#{topic.user.login}"/>
+                </h:column>
+            </h:dataTable>         
+        </h:form>
+    </h:body>
+</html>
+

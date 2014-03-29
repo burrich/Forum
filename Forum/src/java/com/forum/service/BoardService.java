@@ -6,7 +6,10 @@
 
 package com.forum.service;
 
+import com.forum.entity.Board;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -15,6 +18,10 @@ import javax.ejb.Stateless;
 @Stateless
 public class BoardService {
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    @PersistenceContext
+    private EntityManager em;
+    
+    public Board getBoardById(long id) {
+        return em.find(Board.class, id);
+    }
 }

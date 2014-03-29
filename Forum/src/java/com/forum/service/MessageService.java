@@ -6,7 +6,16 @@
 
 package com.forum.service;
 
+import com.forum.entity.Board;
+import com.forum.entity.Message;
+import com.forum.entity.Topic;
+import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 /**
  *
@@ -15,6 +24,22 @@ import javax.ejb.Stateless;
 @Stateless
 public class MessageService {
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    @PersistenceContext
+    private EntityManager em;
+    
+    public List<Message> getMessagesByTopic(Topic topic) {
+        final CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        final CriteriaQuery<Message> query = criteriaBuilder.createQuery(Message.class);
+        final Root<Message> messages = query.from(Message.class);
+    
+        query.where(
+                criteriaBuilder.equal(
+                    messages.get("topic").as(Topic.class), 
+                    topic
+        ));
+        
+        List<Message> getMessages = em.createQuery(query).getResultList();
+        
+        return getMessages;
+    }
 }

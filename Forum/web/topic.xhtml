@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Topic</title>
+    </h:head>
+    <h:body>
+        <f:metadata>
+            <f:viewParam name="idTopic" value="#{topicController.idTopic}" />
+        </f:metadata>
+        
+        <h1>Forum</h1>
+        
+        <h:form>
+            <h:commandLink action="login?faces-redirect=true" value="login"/>
+        </h:form>
+        
+        <br/>
+
+        <h2>#{topicController.topic.name}</h2>
+        
+        <h:form>
+            <h:dataTable value="#{topicController.messagesTableModel}" var="message">
+                <h:column>
+                    <h:outputText value="#{message.text}"/>
+                </h:column>
+            </h:dataTable>         
+        </h:form>
+    </h:body>
+</html>
+

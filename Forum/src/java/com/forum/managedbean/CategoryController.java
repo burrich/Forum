@@ -17,12 +17,9 @@ import javax.faces.bean.ViewScoped;
  * @author Nicolas
  */
 @ManagedBean
-@ViewScoped
+@ViewScoped 
 public class CategoryController {
 
-    @EJB
-    private CategoryService categoryService;
-    
     private Category category;
     
     /**
@@ -30,5 +27,18 @@ public class CategoryController {
      */
     public CategoryController() {
     }
+    
+    public Category getCategory() {
+        if(category == null) {
+            category = new Category();
+        }
+        
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+    
     
 }
