@@ -33,7 +33,6 @@ public class TopicController implements Serializable {
     @EJB
     private MessageService messageService;
     
-    private int idTopic;
     private Topic topic;
     private DataModel<Message> messagesTableModel;
     
@@ -43,24 +42,17 @@ public class TopicController implements Serializable {
     public TopicController() {
     }
     
-    public String listMessages(int idTopic) {
-        return "topic?faces-redirect=true&idTopic=" + idTopic;
+    public String listMessages(Topic topic) {
+        return "topic?faces-redirect=true&idTopic=" + topic.getId();
     }
 
-    public int getIdTopic() {
-        return idTopic;
-    }
-
-    public void setIdTopic(int idTopic) {
-        this.idTopic = idTopic;
+    public String newMessage() {
+        return "add_message?faces-redirect=true&idTopic=" + topic.getId();
     }
 
     public Topic getTopic() {
         if (topic == null) {
-            if (idTopic > 0)
-                topic = topicService.getTopicById(idTopic);
-            else 
-                topic = new Topic();
+            topic = new Topic();
         }
         
         return topic;
@@ -69,9 +61,18 @@ public class TopicController implements Serializable {
     public void setTopic(Topic topic) {
         this.topic = topic;
     }
+    
+    public void setTopic(int idTopic) {
+        this.topic = topicService.getTopicById(idTopic);
+    }
+    
+    public void setTopicById(String idTopic) {
+        this.topic = topicService.getTopicById(Integer.parseInt(idTopic));
+    }
+
 
     public DataModel<Message> getMessagesTableModel() throws IOException {
-        final List<Message> messages = messageService.getMessagesByTopic(getTopic());
+        final List<Message> messages = messageService.getMessagesByTopic(topic);
 
         messagesTableModel = new ListDataModel<Message>(messages);
         

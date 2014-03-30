@@ -7,9 +7,7 @@
         <title>Board</title>
     </h:head>
     <h:body>
-        <f:metadata>
-            <f:viewParam name="idBoard" value="#{boardController.idBoard}" />
-        </f:metadata>
+        #{boardController.setBoardById(param.idBoard)}
         
         <h1>Forum</h1>
         
@@ -24,7 +22,7 @@
         <h:form>
             <h:dataTable value="#{boardController.topicsTableModel}" var="topic">
                 <h:column>
-                    <h:commandLink action="#{topicController.listMessages(topic.id)}" value="#{topic.name}" /> |
+                    <h:commandLink action="#{topicController.listMessages(topic)}" value="#{topic.name}" /> |
                 </h:column>
                 
                  <h:column>

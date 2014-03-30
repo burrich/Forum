@@ -32,10 +32,11 @@ CREATE TABLE `message` (
   PRIMARY KEY (`id`),
   KEY `topic_idx` (`topic`),
   KEY `messageUser_idx` (`user`),
+  CONSTRAINT `FK_MESSAGE_user` FOREIGN KEY (`user`) REFERENCES `user` (`id`),
   CONSTRAINT `FK_MESSAGE_topic` FOREIGN KEY (`topic`) REFERENCES `topic` (`id`),
   CONSTRAINT `messageUser` FOREIGN KEY (`user`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `topic` FOREIGN KEY (`topic`) REFERENCES `topic` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +45,7 @@ CREATE TABLE `message` (
 
 LOCK TABLES `message` WRITE;
 /*!40000 ALTER TABLE `message` DISABLE KEYS */;
-INSERT INTO `message` VALUES (1,'blabla',1,1),(2,'blabla',1,1),(3,'blabla',2,1),(4,'blabla',3,1),(5,'blabla',3,1);
+INSERT INTO `message` VALUES (1,'blabla',1,1),(2,'blabla',1,1),(3,'blabla',2,1),(4,'blabla',3,1),(5,'blabla',3,1),(8,'test',3,1),(9,'test topic3',3,1),(10,'test',6,1);
 /*!40000 ALTER TABLE `message` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-03-29 16:07:29
+-- Dump completed on 2014-03-30 22:09:14

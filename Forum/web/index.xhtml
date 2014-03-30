@@ -1,8 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:h="http://java.sun.com/jsf/html">
     <h:head>
         <title>Forum</title>
     </h:head>
@@ -12,7 +11,7 @@
         <h:form>
             <h:commandLink action="login?faces-redirect=true" value="login"/>
         </h:form>
-        
+
         <br/>
         
         <h:form>
@@ -24,7 +23,7 @@
                 <h:column>
                     <h:dataTable value="#{category.boards}" var="board">
                         <h:column>
-                            <h:commandLink action="#{boardController.listTopics(board.id)}" value="#{board.name}" /> |
+                            <h:commandLink action="#{boardController.listTopics(board)}" value="#{board.name}" /> |
                         </h:column>
                         
                         <h:column>

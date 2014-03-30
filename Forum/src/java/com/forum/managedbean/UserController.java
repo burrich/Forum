@@ -7,7 +7,9 @@
 package com.forum.managedbean;
 
 import com.forum.entity.User;
+import com.forum.service.MessageService;
 import com.forum.service.UserService;
+import java.io.IOException;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;

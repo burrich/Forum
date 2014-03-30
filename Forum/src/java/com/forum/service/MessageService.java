@@ -6,7 +6,6 @@
 
 package com.forum.service;
 
-import com.forum.entity.Board;
 import com.forum.entity.Message;
 import com.forum.entity.Topic;
 import java.util.List;
@@ -41,5 +40,10 @@ public class MessageService {
         List<Message> getMessages = em.createQuery(query).getResultList();
         
         return getMessages;
+    }
+    
+    public Message addMessage(Message message) {
+        em.persist(message);
+        return message;
     }
 }

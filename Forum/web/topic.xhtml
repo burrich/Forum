@@ -7,9 +7,7 @@
         <title>Topic</title>
     </h:head>
     <h:body>
-        <f:metadata>
-            <f:viewParam name="idTopic" value="#{topicController.idTopic}" />
-        </f:metadata>
+        #{topicController.setTopicById(param.idTopic)}
         
         <h1>Forum</h1>
         
@@ -24,9 +22,19 @@
         <h:form>
             <h:dataTable value="#{topicController.messagesTableModel}" var="message">
                 <h:column>
+                    <h:outputText value="#{message.user.login}"/> |
+                </h:column>
+                
+                <h:column>
                     <h:outputText value="#{message.text}"/>
                 </h:column>
-            </h:dataTable>         
+            </h:dataTable>       
+            
+            <br/>
+        </h:form>
+        
+        <h:form>
+            <h:commandLink action="#{topicController.newMessage()}" value="New answer"/>
         </h:form>
     </h:body>
 </html>

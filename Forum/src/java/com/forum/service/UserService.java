@@ -54,4 +54,8 @@ public class UserService {
             return null;
         }
     }
+        
+    public User getUserById(long id) {
+        return em.find(User.class, id);
+    }
 }

@@ -30,14 +30,19 @@ public class Message implements Serializable {
     @ManyToOne
     @JoinColumn(name = "topic")
     private Topic topic;
+    
+    @ManyToOne
+    @JoinColumn(name = "user")
+    private User user;
 
     public Message() {
         
     }
     
-    public Message(String text, Topic topic) {
+    public Message(String text, Topic topic, User user) {
         this.text = text;
         this.topic = topic;
+        this.user = user;
     }
 
     public Long getId() {
@@ -62,6 +67,14 @@ public class Message implements Serializable {
 
     public void setTopic(Topic topic) {
         this.topic = topic;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override

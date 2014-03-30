@@ -7,8 +7,7 @@
 package com.forum.managedbean;
 
 import com.forum.entity.Category;
-import com.forum.service.CategoryService;
-import javax.ejb.EJB;
+import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -18,7 +17,7 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean
 @ViewScoped 
-public class CategoryController {
+public class CategoryController implements Serializable {
 
     private Category category;
     

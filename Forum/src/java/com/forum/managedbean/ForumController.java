@@ -9,6 +9,7 @@ package com.forum.managedbean;
 import com.forum.entity.Category;
 import com.forum.service.CategoryService;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -22,7 +23,7 @@ import javax.faces.model.ListDataModel;
  */
 @ManagedBean
 @ViewScoped
-public class ForumController {
+public class ForumController implements Serializable {
 
     @EJB
     private CategoryService categoryService;

@@ -33,7 +33,7 @@ public class BoardController implements Serializable{
     @EJB
     private BoardService boardService;
     
-    private int idBoard;
+
     private Board board;
     private DataModel<Topic> topicsTableModel;
     
@@ -43,16 +43,13 @@ public class BoardController implements Serializable{
     public BoardController() {
     }
     
-    public String listTopics(int idBoard) {
-        return "board?faces-redirect=true&idBoard=" + idBoard;
+    public String listTopics(Board board) {
+        return "board?faces-redirect=true&idBoard=" + board.getId();
     }
 
     public Board getBoard() {
         if (board == null) {
-            if (idBoard > 0)
-                board = boardService.getBoardById(idBoard);
-            else 
-                board = new Board();
+            board = new Board();
         }
         
         return board;
@@ -62,16 +59,16 @@ public class BoardController implements Serializable{
         this.board = board;
     }
     
-    public int getIdBoard() {
-        return idBoard;
+    public void setBoard(int idBoard) {
+        this.board = boardService.getBoardById(idBoard);
     }
-
-    public void setIdBoard(int idBoard) {
-        this.idBoard = idBoard;
+    
+    public void setBoardById(String idBoard) {
+        this.board = boardService.getBoardById(Integer.parseInt(idBoard));
     }
     
     public DataModel<Topic> getTopicsTableModel() throws IOException {
-        final List<Topic> topics = topicService.getTopicsByBoard(getBoard());
+        final List<Topic> topics = topicService.getTopicsByBoard(board);
 
         topicsTableModel = new ListDataModel<Topic>(topics);
         
