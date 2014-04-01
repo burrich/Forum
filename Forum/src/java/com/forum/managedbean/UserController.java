@@ -13,6 +13,7 @@ import java.io.IOException;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -34,17 +35,18 @@ public class UserController {
     }
     
     public String authenticateUser() {
-        // Try to authenticate the user whose actually binded to the view
         user = userService.authenticate(user.getLogin(), user.getPasswd());
 
-        // faces-redirect=true means the user will be TRULLY redirected (not only "forwarded" so
-        // the URL in his browser will change)
         if(user == null) {
-            // The user is null so the provided creditentials are invalids
-            return "login?faces-redirect=true&login=0";
+            return "login";
         } else {
-            return "test?faces-redirect=true&login=1";
+            return "index?faces-redirect=true";
         }
+    }
+    
+    public String logout() {
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "index?faces-redirect=true";
     }
 
     public User getUser() {

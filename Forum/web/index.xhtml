@@ -9,7 +9,8 @@
         <h1>Forum</h1>
         
         <h:form>
-            <h:commandLink action="login?faces-redirect=true" value="login"/>
+            <h:commandLink action="login?faces-redirect=true" value="login" rendered="#{userController.user.login == null}"/>
+            <h:commandLink action="#{userController.logout}" value="logout" rendered="#{userController.user.login != null}"/>
         </h:form>
 
         <br/>
@@ -23,7 +24,8 @@
                 <h:column>
                     <h:dataTable value="#{category.boards}" var="board">
                         <h:column>
-                            <h:commandLink action="#{boardController.listTopics(board)}" value="#{board.name}" /> |
+                            <h:outputText value="#{board.name}" rendered="#{userController.user.login == null}"/>
+                            <h:commandLink action="#{boardController.listTopics(board)}" value="#{board.name}" rendered="#{userController.user.login != null}" /> |
                         </h:column>
                         
                         <h:column>
