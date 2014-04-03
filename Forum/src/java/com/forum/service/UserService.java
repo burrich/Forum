@@ -15,6 +15,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.hibernate.Hibernate;
 
 /**
  *
@@ -26,7 +27,7 @@ public class UserService {
     @PersistenceContext
     private EntityManager em;
     
-        public User authenticate(String username, String password) {
+    public User authenticate(String username, String password) {
         
         // Hashing the password with Apache's DigestsUtils
         final String hashedPassword = DigestUtils.sha1Hex(password);
@@ -46,8 +47,11 @@ public class UserService {
         // Execute the request
         // If there is a no result exception, returns a null user
         try {
-            
             final User foundUser = em.createQuery(query).getSingleResult();
+            
+            // Récupération des messages de l'user
+            Hibernate.initialize(foundUser.getMessages());
+    
             return foundUser;
             
         } catch(NoResultException nre) {

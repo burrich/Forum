@@ -7,9 +7,7 @@
 package com.forum.managedbean;
 
 import com.forum.entity.User;
-import com.forum.service.MessageService;
 import com.forum.service.UserService;
-import java.io.IOException;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -38,7 +36,7 @@ public class UserController {
         user = userService.authenticate(user.getLogin(), user.getPasswd());
 
         if(user == null) {
-            return "login";
+            return "login?faces-redirect=true&login=0";
         } else {
             return "index?faces-redirect=true";
         }
@@ -47,6 +45,10 @@ public class UserController {
     public String logout() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         return "index?faces-redirect=true";
+    }
+    
+    public int countUserMessages() {
+        return user.getMessages().size();
     }
 
     public User getUser() {

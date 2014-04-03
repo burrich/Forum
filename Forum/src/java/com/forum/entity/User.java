@@ -7,6 +7,9 @@
 package com.forum.entity;
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +17,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -32,16 +38,26 @@ public class User implements Serializable {
     protected String lastName;
     protected String login;
     protected String passwd;
+    
+    @Temporal(TemporalType.DATE)
+    protected Date creationDate;
+    
+    @Column(name = "type", insertable = false, updatable = false)
+    protected String type;
 
+    @OneToMany(mappedBy = "user")
+    private List<Message> messages;
+    
     public User() {
         
     }
 
-    public User(String firstName, String lastName, String login, String passwd) {
+    public User(String firstName, String lastName, String login, String passwd, List<Message> messages) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.login = login;
         this.passwd = passwd;
+        this.messages = messages;
     }
     
     public Long getId() {
@@ -78,6 +94,30 @@ public class User implements Serializable {
 
     public String getPasswd() {
         return passwd;
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
     }
 
     public void setPasswd(String passwd) {
