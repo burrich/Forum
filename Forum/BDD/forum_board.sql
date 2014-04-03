@@ -30,8 +30,8 @@ CREATE TABLE `board` (
   `category` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `category_idx` (`category`),
-  CONSTRAINT `FK_BOARD_category` FOREIGN KEY (`category`) REFERENCES `category` (`id`),
-  CONSTRAINT `category` FOREIGN KEY (`category`) REFERENCES `category` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `category` FOREIGN KEY (`category`) REFERENCES `category` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_BOARD_category` FOREIGN KEY (`category`) REFERENCES `category` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-04-02  0:47:04
+-- Dump completed on 2014-04-03 17:09:23

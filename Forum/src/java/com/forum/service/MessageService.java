@@ -46,4 +46,13 @@ public class MessageService {
         em.persist(message);
         return message;
     }
+    
+    public Long countMessages() {
+        final CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        final CriteriaQuery<Long> query = criteriaBuilder.createQuery(Long.class);
+        
+        query.select(criteriaBuilder.count(query.from(Message.class)));
+  
+        return em.createQuery(query).getSingleResult();
+    }
 }

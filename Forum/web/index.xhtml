@@ -42,7 +42,12 @@
                     </h:dataTable>   
                 </h:column>
            
-            </h:dataTable>         
+            </h:dataTable>   
+            
+            <br />
+            
+            <h:outputText value="Number of messages : #{forumController.countMessages()}"/> <br />
+            <h:outputText value="Number of users : #{forumController.countUsers()}"/>
         </h:form>
     </h:body>
 </html>

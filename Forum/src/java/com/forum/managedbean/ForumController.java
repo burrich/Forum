@@ -8,6 +8,8 @@ package com.forum.managedbean;
 
 import com.forum.entity.Category;
 import com.forum.service.CategoryService;
+import com.forum.service.MessageService;
+import com.forum.service.UserService;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
@@ -28,6 +30,12 @@ public class ForumController implements Serializable {
     @EJB
     private CategoryService categoryService;
     
+    @EJB
+    private MessageService messageService;
+    
+    @EJB
+    private UserService userService;
+    
     private DataModel<Category> categoriesTableModel;
     
     /**
@@ -46,5 +54,13 @@ public class ForumController implements Serializable {
 
     public void setCategoriesTableModel(DataModel<Category> categoriesTableModel) {
         this.categoriesTableModel = categoriesTableModel;
+    }
+    
+    public Long countMessages() {
+        return messageService.countMessages();
+    }
+    
+    public Long countUsers() {
+        return userService.countUsers();
     }
 }

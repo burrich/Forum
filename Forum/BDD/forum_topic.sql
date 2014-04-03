@@ -33,9 +33,9 @@ CREATE TABLE `topic` (
   PRIMARY KEY (`id`),
   KEY `board_idx` (`board`),
   KEY `topicUser_idx` (`user`),
-  CONSTRAINT `FK_TOPIC_user` FOREIGN KEY (`user`) REFERENCES `user` (`id`),
   CONSTRAINT `board` FOREIGN KEY (`board`) REFERENCES `board` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_TOPIC_board` FOREIGN KEY (`board`) REFERENCES `board` (`id`),
+  CONSTRAINT `FK_TOPIC_user` FOREIGN KEY (`user`) REFERENCES `user` (`id`),
   CONSTRAINT `topicUser` FOREIGN KEY (`user`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -59,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-04-02  0:47:04
+-- Dump completed on 2014-04-03 17:09:23

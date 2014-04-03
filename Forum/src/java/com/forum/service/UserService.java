@@ -62,4 +62,13 @@ public class UserService {
     public User getUserById(long id) {
         return em.find(User.class, id);
     }
+    
+    public Long countUsers() {
+        final CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        final CriteriaQuery<Long> query = criteriaBuilder.createQuery(Long.class);
+        
+        query.select(criteriaBuilder.count(query.from(User.class)));
+  
+        return em.createQuery(query).getSingleResult();
+    }
 }

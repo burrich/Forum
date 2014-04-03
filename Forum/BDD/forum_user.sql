@@ -30,6 +30,7 @@ CREATE TABLE `user` (
   `lastName` varchar(45) DEFAULT NULL,
   `login` varchar(45) DEFAULT NULL,
   `passwd` varchar(45) DEFAULT NULL,
+  `creationDate` date DEFAULT NULL,
   `type` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
@@ -41,7 +42,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'user','user','user','9cf95dacd226dcf43da376cdb6cbba7035218921','admin');
+INSERT INTO `user` VALUES (1,'user','user','user','9cf95dacd226dcf43da376cdb6cbba7035218921','2014-04-03','admin');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-04-02  0:47:05
+-- Dump completed on 2014-04-03 17:09:24
