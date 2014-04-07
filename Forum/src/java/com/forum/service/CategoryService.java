@@ -39,4 +39,19 @@ public class CategoryService {
         
         return categories;
     }
+    
+    public void addCategory(Category category)
+    {
+        em.persist(category);
+    }
+    
+    public void deleteCategory(Category category)
+    {
+        em.remove(em.contains(category) ? category : em.merge(category));
+    }
+
+    public void renameCategory(Category category) {
+        
+        em.merge(category);
+    }
 }

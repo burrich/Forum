@@ -7,7 +7,9 @@
 package com.forum.managedbean;
 
 import com.forum.entity.Category;
+import com.forum.service.CategoryService;
 import java.io.Serializable;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -19,6 +21,8 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped 
 public class CategoryController implements Serializable {
 
+    @EJB
+    private CategoryService categoryService;
     private Category category;
     
     /**
@@ -39,5 +43,15 @@ public class CategoryController implements Serializable {
         this.category = category;
     }
     
+    public void renameCategory() {
+        categoryService.renameCategory(category);
+    }
     
+    public void addCategory() {
+        categoryService.addCategory(category);
+    }
+    
+    public void deleteCategory(Category go) {
+        categoryService.deleteCategory(go);
+    }
 }

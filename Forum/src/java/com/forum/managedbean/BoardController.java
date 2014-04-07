@@ -78,4 +78,19 @@ public class BoardController implements Serializable{
     public void setTopicsTableModel(DataModel<Topic> topicsTableModel) {
         this.topicsTableModel = topicsTableModel;
     }
+    
+    public void deleteBoard(Board go)
+    {
+       boardService.deleteBoard(go);
+    }
+    
+    public void addBoard()
+    {
+        boardService.addBoard(board);
+    }
+    
+    public void renameBoard()
+    {
+        boardService.renameBoard(board);
+    }
 }

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Forum</title>
+        <link type="text/css" rel="stylesheet" href="js/libs/twitter-bootstrap/css/bootstrap.css"/>
+        <link type="text/css" rel="stylesheet" href="js/libs/twitter-bootstrap/css/bootstrap-theme.css"/>
+    </h:head>
+    <body>
+        <h1>Forum</h1>
+            <h:form>
+            
+            <h2>New Category</h2>
+
+            <h:outputLabel for="name"></h:outputLabel>
+            <h:inputText value="#{categoryController.category.name}" id="name" required="true"/>
+            
+            <h:commandButton action="#{categoryController.addCategory()}" value="Create categoy"/>
+            </h:form>
+    </body>
+</html>

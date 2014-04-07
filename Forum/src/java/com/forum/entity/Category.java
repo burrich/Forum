@@ -27,7 +27,7 @@ public class Category implements Serializable {
     
     private String name;
     
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category", orphanRemoval=true)
     private List<Board> boards;
 
     public Category() {

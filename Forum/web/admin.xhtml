@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Forum</title>
+        <link type="text/css" rel="stylesheet" href="js/libs/twitter-bootstrap/css/bootstrap.css"/>
+        <link type="text/css" rel="stylesheet" href="js/libs/twitter-bootstrap/css/bootstrap-theme.css"/>
+    </h:head>
+    <body>
+        <h1>Forum</h1>
+        
+          <h:form>
+            <h:commandLink action="index?faces-redirect=true" value="Home" rendered="#{userController.user.type == 'admin'}"/>
+          </h:form>
+
+        <br/>
+        
+        
+          <h:form>
+            <h:dataTable value="#{forumController.categoriesTableModel}" var="category">
+                <h:column>
+                    <h:outputText value="#{category.name}"/>
+                </h:column>
+                
+                  <h:column>
+                   <h:outputLabel for="catname"> </h:outputLabel>
+                        <h:inputText value="#{category.name}" id="catname" />
+                 </h:column>
+                
+                <h:column>
+                 <h:commandButton action="#{categoryController.renameCategory()}" value="Rename category"/>
+                </h:column>
+                
+                <h:column>
+                    <h:dataTable value="#{category.boards}" var="board">
+                        
+                        <h:column>
+                            <h:outputText value="#{board.name}" rendered="#{userController.user.login == null}"/>
+                            <h:commandLink action="#{boardController.listTopics(board)}" value="#{board.name}" rendered="#{userController.user.login != null}" />
+                        </h:column>
+                        
+                        <h:column>
+                        <h:outputLabel for="boardname"> </h:outputLabel>
+                        <h:inputText value="#{boardController.board.name}" id="boardname" />
+                        </h:column>
+                        <h:column>
+                        <h:commandButton action="#{boardController.renameBoard()}" value="Rename board"/>
+                        </h:column>
+                        <h:column>
+                            <h:commandLink action="#{boardController.deleteBoard(board)}" value="delete"/>
+                        </h:column>
+                        
+                        
+                    </h:dataTable>
+                    
+                        <h:column>
+                        <h:outputLabel for="name"> </h:outputLabel>
+                        <h:inputText value="#{boardController.board.name}" id="name" required="true"/>
+                        </h:column>
+                        <h:column>
+                        <h:commandButton action="#{boardController.addBoard()}" value="Add new board"/>
+                        </h:column>
+          
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    
+        
+                </h:column>
+            
+               
+            </h:dataTable>   
+      
+          </h:form>
+        
+    </body>
+</html>

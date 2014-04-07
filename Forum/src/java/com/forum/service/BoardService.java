@@ -24,4 +24,18 @@ public class BoardService {
     public Board getBoardById(long id) {
         return em.find(Board.class, id);
     }
+    
+    public void deleteBoard(Board go)
+    {
+        em.remove(em.contains(go) ? go : em.merge(go));
+    }
+    
+    public void renameBoard(Board board)
+    {
+  //      em.persist(board);
+    }
+
+    public void addBoard(Board board) {
+        em.persist(board);
+    }
 }

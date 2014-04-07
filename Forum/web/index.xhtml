@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
         <title>Forum</title>
         <link type="text/css" rel="stylesheet" href="js/libs/twitter-bootstrap/css/bootstrap.css"/>
@@ -14,7 +15,7 @@
             <h:commandLink action="login?faces-redirect=true" value="login" rendered="#{userController.user.login == null}"/>
             <h:commandLink action="#{userController.logout}" value="logout" rendered="#{userController.user.login != null}"/>
         </h:form>
-
+        
         <br/>
         
         <h:form>
@@ -43,14 +44,31 @@
                         </h:column>
                     </h:dataTable>   
                 </h:column>
-           
+                    
+                    <h:column>
+                        <h:commandLink action="#{categoryController.deleteCategory(category)}" value="Delete" rendered="#{userController.user.type == 'admin'}"/>
+                     </h:column>
             </h:dataTable>   
+            
             
             <br />
             
+            <h:column>
+               <h:commandLink action="createcat?faces-redirect=true" value="Create category" rendered="#{userController.user.type == 'admin'}"/>
+            </h:column>
+            
+            <br />
+            
+            <h:column>
+                        <h:commandLink action="admin?faces-redirect=true" value="Edit categories" rendered="#{userController.user.type == 'admin'}">
+                            <f:param name="catId" value="#{category.id}" />
+                        </h:commandLink>
+                         </h:column>
+            
+             <br />
+              <br />
             <h:outputText value="Number of messages : #{forumController.countMessages()}"/> <br />
             <h:outputText value="Number of users : #{forumController.countUsers()}"/>
         </h:form>
     </h:body>
 </html>
-
